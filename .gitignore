@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.nx
+.run
+.yarn/cache
+.yarn/install-state.gz
+.yarn/plugins
+data
+dist
+node_modules
+packages/server/*.bin

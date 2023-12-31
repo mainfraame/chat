@@ -1,0 +1,23 @@
+{
+  "jsc": {
+    "baseUrl": ".",
+    "parser": {
+      "decorators": true,
+      "dynamicImport": true,
+      "syntax": "typescript",
+      "tsx": true
+    },
+    "target": "es2020",
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true,
+      "react": {
+        "runtime": "automatic"
+      }
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "sourceMaps": true
+}

@@ -1,0 +1,4 @@
+# don't auto-format files with long strings
+
+node_modules
+packages/*/dist

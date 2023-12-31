@@ -1,0 +1,14 @@
+ignores: [
+  "dotenv",
+  "eslint-",
+  "babel-*",
+  "pino-pretty",
+  "webpack",
+  "webpack-cli",
+  "@types/*",
+  "@storybook/builder-webpack5",
+  "@storybook/manager-webpack5",
+  "@storybook/addon-a11y",
+  "@storybook/addon-essentials",
+  "storybook-addon-jsx"
+]

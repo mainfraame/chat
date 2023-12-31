@@ -1,0 +1,29 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "depcheck",
+          "typecheck"
+        ],
+        "useDaemonProcess": false
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "depcheck": {
+      "dependsOn": ["^depcheck"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}

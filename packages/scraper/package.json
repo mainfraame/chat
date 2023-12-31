@@ -1,0 +1,45 @@
+{
+  "name": "@chat/scraper",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./src/index.tsx",
+  "exports": {
+    ".": {
+      "types": "./src/index.tsx",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "webpack --mode production --config ./webpack.config.js",
+    "depcheck": "depcheck .",
+    "start": "node ./dist/main.js",
+    "typecheck": "tsc --noEmit --incremental"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.13.0",
+    "cheerio": "^1.0.0-rc.12",
+    "langchain": "^0.0.213",
+    "playwright": "^1.40.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@swc/core": "^1.3.102",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "copy-webpack-plugin": "^11.0.0",
+    "node-loader": "^2.0.0",
+    "swc-loader": "^0.2.3",
+    "terser-webpack-plugin": "^5.3.10",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0"
+  },
+  "sideEffects": false
+}

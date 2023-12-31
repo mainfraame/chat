@@ -1,0 +1,8 @@
+ignores: [
+  "@swc/*",
+  "css-loader",
+  "html-loader",
+  "style-loader",
+  "swc-loader",
+  "webpack-cli"
+]

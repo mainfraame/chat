@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  nginx:
+    command: [ 'nginx', '-g', 'daemon off;' ]
+    container_name: nginx
+    environment:
+      CHAT_API: host.docker.internal:8095
+      CHAT_RESOLVER: 127.0.0.11
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    image: nginx:1.25.0-alpine
+    logging:
+      driver: json-file
+      options:
+        max-size: 20m
+        max-file: 10
+    mem_reservation: 100m
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      # nginx configs
+      - ./nginx/error-proxies.conf:/etc/nginx/templates/error-proxies.conf.template
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/server.conf:/etc/nginx/templates/server.conf.template
+      # assets
+      - ./packages/ui/dist:/etc/nginx/html
+  redis:
+    container_name: redis
+    image: redis:6.2.14-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+  pgvector:
+    container_name: pgvector
+    image: ankane/pgvector
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_PASSWORD: ChangeMe
+      POSTGRES_USER: postgres
+    volumes:
+      - ./langchain.sql:/docker-entrypoint-initdb.d/create_tables.sql

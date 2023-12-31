@@ -1,0 +1,54 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "backup": "pg_dump postgres://postgres:ChangeMe@127.0.0.1:5433/langchain --create > ./langchain.sql",
+    "build": "yarn lerna run build",
+    "depcheck": "yarn lerna run depcheck",
+    "lint": "eslint . -c .eslintrc.cjs --ignore-path ./.eslintignore --quiet --fix",
+    "start": "sh -c \"if [ \"$(uname -m)\" = \"arm64\" ]; then DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 docker-compose -f ./docker-compose.yml down && docker-compose -f ./docker-compose.yml up -d --remove-orphans; else docker-compose -f ./docker-compose.yml down && docker-compose -f ./docker-compose.yml up -d --remove-orphans; fi\" & yarn lerna run dev --scope=@chat/ui & yarn lerna run dev --scope=@chat/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mainfraame/chat.git"
+  },
+  "author": "dayne mentier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mainfraame/chat/issues"
+  },
+  "homepage": "https://github.com/mainfraame/chat#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/config-lerna-scopes": "^18.4.3",
+    "@commitlint/prompt-cli": "^18.4.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sort-keys-plus": "^1.3.1",
+    "git-branch-is": "^4.0.0",
+    "husky": "^8.0.3",
+    "import-sort-style-module": "^6.0.0",
+    "lerna": "^8.0.1",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.0.2"
+}
